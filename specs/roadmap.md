@@ -1,50 +1,31 @@
-# Project Roadmap: [PROJECT_NAME]
+# 🗺️ Project Roadmap: Tiny Tamagotchi
 
-Example of a roadmap.md file for a project.
+This roadmap outlines the development phases for the Tiny Tamagotchi, focusing on the core pillars of living vitals, the care loop, and dynamic states while staying within the predefined scope.
 
-## 1. Project Status Dashboard
-- **Current Version:** v0.1.0-alpha
-- **Overall Progress:** [▓░░░░░░░░░] 10%
-- **Primary Objective:** Initial Infrastructure & Core Logic Spec.
+## Phase 1: Foundation & Project Setup 🟢
+- [ ] **Infrastructure**: Initialize the repository with the chosen tech stack.
+- [ ] **Global State**: Define the central state for the pet (Stats, Stage, Status).
+- [ ] **Naming Interface**: Implement the initial layout for naming the pet.
+- [ ] **Base UI Shell**: Create the main container and responsive layout for the app.
 
----
+## Phase 2: Living Vitals & Ticking System ⚪
+- [ ] **Feature: Vitals Engine**: Implement the logic for Hunger, Happiness, and Energy (0-100).
+- [ ] **Background Decay**: Create the "Tick" system to automatically decrease stats over time.
+- [ ] **Visual Meters**: Build the UI components for displaying stat levels.
 
-## 2. Active Focus (Current Task)
-> [!IMPORTANT]
-> **Current Task:** [e.g., Implementing Core State Machine]
-> **Status:** [In Progress / Reviewing / Testing]
-> **Assigned Agent Skill:** `superpowers-workflow` + `playwright-validator`
+## Phase 3: The Care Loop ⚪
+- [ ] **Feature: Feed**: Implement button and logic to restore Hunger.
+- [ ] **Feature: Play**: Implement button and logic to restore Happiness (at the cost of Energy).
+- [ ] **Feature: Rest**: Implement "Sleep" state and button to restore Energy.
+- [ ] **Action Feedback**: Add immediate visual changes during actions (Easter eggs/quirky reactions).
 
----
+## Phase 4: Dynamic States & Evolution ⚪
+- [ ] **Feature: Health States**: Implement the "Sick" state logic triggered by low vitals.
+- [ ] **Feature: Recovery Path**: Implement the mechanism to restore health from the "Sick" state.
+- [ ] **Feature: Evolution**: Implement the "Baby" to "Adult" transformation based on survival time.
+- [ ] **Dynamic Sprites**: Integrate visual changes for Normal, Sick, and Evolved states.
 
-## 3. Milestones & Phases
-
-### Phase 1: Foundation & Specs [Status: e.g., 80%]
-- [x] Initialize Repository Structure
-- [x] Define `mission.md` and `techstack.md`
-- [x] Configure `agents.md` and `/skills`
-- [/] Draft Initial Core Features Specs (In Progress)
-
-### Phase 2: Core Implementation [Status: e.g., 0%]
-- [ ] Setup Environment & Dependencies
-- [ ] Implement [Core Feature 1] (Spec-Driven)
-- [ ] Verify [Core Feature 1] with Playwright Tests
-- [ ] Implement [Core Feature 2]
-
-### Phase 3: Polish & Deployment [Status: e.g., 0%]
-- [ ] UI/UX Audit (Theme Factory Compliance)
-- [ ] Performance Optimization
-- [ ] Final Multi-Agent Red-Team Review
-- [ ] Deployment to Production
-
----
-
-## 4. Known Blockers & Technical Debt
-- **Blocker:** [Describe anything stopping the agent, e.g., "Waiting for API Key"]
-- **Debt:** [e.g., "Temporary mock data used in Auth flow - needs DB integration"]
-
----
-
-## 5. Changelog (Summary)
-- **[dd-mm-yy]**: Completed Initial Skeleton Setup.
-- **[dd-mm-yy]**: Defined Superpowers Protocol.
+## Phase 5: Persistence & Final Polish ⚪
+- [ ] **State Persistence**: Implement LocalStorage syncing to save the pet's state between sessions.
+- [ ] **UX Refinement**: Polish transitions, animations, and responsive behavior.
+- [ ] **Final Integrity Audit**: Ensure the implementation strictly matches the specifications.
