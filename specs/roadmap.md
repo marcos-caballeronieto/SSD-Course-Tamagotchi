@@ -4,9 +4,9 @@ This roadmap outlines the development phases for the Tiny Tamagotchi, focusing o
 
 ## Phase 1: Foundation & Project Setup ✅
 - [x] **Infrastructure**: Initialize the repository with the chosen tech stack.
-- [ ] **Global State**: Define the central state for the pet (Stats, Stage, Status).
-- [ ] **Naming Interface**: Implement the initial layout for naming the pet.
-- [ ] **Base UI Shell**: Create the main container and responsive layout for the app.
+- [x] **Global State**: Define the central state for the pet (Stats, Stage, Status).
+- [x] **Naming Interface**: Implement the initial layout for naming the pet.
+- [x] **Base UI Shell**: Create the main container and responsive layout for the app.
 
 ## Phase 2: Living Vitals & Ticking System ✅
 - [x] **Feature: Vitals Engine**: Implement the logic for Hunger, Happiness, and Energy (0-100).

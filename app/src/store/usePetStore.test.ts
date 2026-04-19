@@ -5,6 +5,10 @@ describe('usePetStore Vitals Decay', () => {
   beforeEach(() => {
     // Reset state before each test
     usePetStore.setState({
+      name: 'TestPet',
+      stage: 'Baby',
+      status: 'Normal',
+      createdAt: Date.now(),
       vitals: { hunger: 100, happiness: 100, energy: 100 },
       lastUpdated: Date.now(),
     });
@@ -71,5 +75,33 @@ describe('usePetStore Vitals Decay', () => {
     expect(state.vitals.hunger).toBe(100);
     expect(state.vitals.happiness).toBe(100);
     expect(state.vitals.energy).toBe(100);
+  });
+});
+
+describe('usePetStore Onboarding & Identity', () => {
+  it('should initialize with null name and newborn defaults', () => {
+    // Force reset to absolute initial state
+    usePetStore.setState({
+      name: null,
+      stage: 'Baby',
+      status: 'Normal',
+      createdAt: null
+    });
+    
+    const state = usePetStore.getState();
+    expect(state.name).toBeNull();
+    expect(state.stage).toBe('Baby');
+    expect(state.status).toBe('Normal');
+    expect(state.createdAt).toBeNull();
+  });
+
+  it('setName should transition store out of null state and set createdAt', () => {
+    usePetStore.setState({ name: null, createdAt: null });
+    
+    usePetStore.getState().setName('Chonker');
+    const state = usePetStore.getState();
+    
+    expect(state.name).toBe('Chonker');
+    expect(state.createdAt).toBeTypeOf('number');
   });
 });

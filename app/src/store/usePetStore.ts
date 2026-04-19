@@ -8,9 +8,14 @@ export interface PetVitals {
 }
 
 export interface PetState {
+  name: string | null;
+  stage: 'Baby' | 'Adult';
+  status: 'Normal' | 'Sick';
+  createdAt: number | null;
   vitals: PetVitals;
   lastUpdated: number;
   tick: () => void;
+  setName: (name: string) => void;
   // Actions to be implemented fully in Phase 3, added here as stubs or basic increments
   feed: () => void;
   play: () => void;
@@ -27,6 +32,10 @@ export const DECAY_RATES = {
 export const usePetStore = create<PetState>()(
   persist(
     (set, get) => ({
+      name: null,
+      stage: 'Baby',
+      status: 'Normal',
+      createdAt: null,
       vitals: {
         hunger: 100,
         happiness: 100,
@@ -35,6 +44,9 @@ export const usePetStore = create<PetState>()(
       lastUpdated: Date.now(),
 
       tick: () => {
+        const { name } = get();
+        if (!name) return; // Do not decay before the game starts
+
         const now = Date.now();
         const { vitals, lastUpdated } = get();
         
@@ -51,6 +63,14 @@ export const usePetStore = create<PetState>()(
             lastUpdated: now,
           });
         }
+      },
+
+      setName: (name: string) => {
+        set({ 
+          name, 
+          createdAt: Date.now(), 
+          lastUpdated: Date.now() // Reset timer so they don't lose stats from sitting on naming screen
+        });
       },
 
       feed: () => {

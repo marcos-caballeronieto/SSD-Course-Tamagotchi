@@ -25,6 +25,37 @@
   -webkit-text-fill-color: transparent;
 }
 
+.statusBadges {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--surface-main);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badgeSuccess {
+  color: var(--color-success);
+  border-color: rgba(46, 204, 113, 0.2);
+  background-color: rgba(46, 204, 113, 0.05);
+}
+
+.badgeDanger {
+  color: var(--color-danger);
+  border-color: rgba(231, 76, 60, 0.2);
+  background-color: rgba(231, 76, 60, 0.05);
+}
+
 .petArea {
   height: 200px;
   background-color: var(--surface-main);
