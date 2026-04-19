@@ -28,7 +28,7 @@ Move beyond literal names to specific use-cases:
 - **Content**: `text-title`, `text-body`, `text-muted`, `icon-active`.
 
 ## 4. Integrity & Maintenance
-- **Source of Truth**: Whenever a style decision is made or changed (via any command above), you MUST update `specs/ui_ux.md` to reflect the current brand identity.
+- **Source of Truth**: Whenever a style decision is made or changed (via any command above), ensure it is documented in the relevant feature spec or technical documentation.
 - **/audit-ui**: Scan `app/components/` and `app/pages/` for hardcoded color codes (hex/rgb) or arbitrary pixel values. Replace them with system tokens.
 - **/styleguide**: Generate or update `specs/STYLEGUIDE.md` which renders a visual preview of all tokens and base components.
 

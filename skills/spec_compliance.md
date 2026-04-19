@@ -9,7 +9,7 @@ version: "2.0.0"
 
 ## 1. The Implementation Cycle
 1.  **Read & Digest**: Load `mission.md` and the target `specs/features/[feature].md`.
-2.  **Sync-Check**: Before writing code, ensure `techstack.md` and `ui_ux.md` are up to date with the latest design decisions.
+2.  **Sync-Check**: Before writing code, ensure `techstack.md` is up to date with the latest architectural decisions.
 3.  **Draft Implementation Plan**: Create the `[dd-mm-yy_feature_plan.md]` as per the `superpowers.md` skill.
 4.  **Execute**: Implement in atomic blocks, verifying each against its spec requirement.
 
@@ -19,13 +19,13 @@ version: "2.0.0"
     - Draft 3 possible technical interpretations.
     - Present pros/cons for each to the USER.
     - **Crucial**: Once a decision is made, update the spec file BEFORE continuing the implementation.
-- **Conflicts**: If `ui_ux.md` conflicts with `techstack.md`, the `mission.md` acts as the ultimate tie-breaker, asking the user is also a must when conflicts appear.
+- **Conflicts**: If technical specs conflict, the `mission.md` acts as the ultimate tie-breaker, asking the user is also a must when conflicts appear.
 
 ## 3. Definition of Done (DoD)
 A task is only "Done" when:
 - [ ] Every requirement in the feature spec is implemented and verified.
 - [ ] Code follows the patterns in `techstack.md`.
-- [ ] UI matches the tokens in `ui_ux.md` (verified via `theme_factory` audit).
+- [ ] UI matches the system tokens (verified via `theme_factory` audit).
 - [ ] The `ROADMAP.md` and other documents are updated.
 - [ ] Tests in `test/` pass with 100% coverage for the new logic.
 

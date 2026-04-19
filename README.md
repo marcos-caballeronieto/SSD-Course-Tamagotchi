@@ -46,12 +46,10 @@ The framework is designed for the AI to read hierarchically. Never let the agent
 ```text
 ├── 📜 README.md              # This document.
 ├── 🗺️ ROADMAP.md             # The AI's short-term memory (Current state and blockers).
-├── 🔒 REQUIREMENTS.md        # The "containment wall" (Versions and environment variables).
 ├── 🤖 specs/                 # The absolute source of truth (The "What").
 │   ├── agents.md             # The Constitution: Who the AI is and what rules it follows.
 │   ├── mission.md            # The Purpose: Why the project exists.
 │   ├── techstack.md          # The Tools: Allowed libraries and architecture.
-│   ├── ui_ux.md              # The Design: Design tokens and accessibility guidelines.
 │   └── features/             # Granular specs (e.g., `core_logic.md`).
 ├── 🛠️ skills/                # Agent tools and commands (The "How").
 │   ├── superpowers.md        # Development workflow and custom commands (/brainstorm, /write-plan).
@@ -68,7 +66,7 @@ The framework is designed for the AI to read hierarchically. Never let the agent
 The framework enforces a rigorous iterative process to prevent technical debt and context drift:
 
 1. **Plan & Brainstorm**:
-   Use the `/brainstorm` or `/write-plan` commands to define *how* a feature will be built. The agent must reference `specs/` and `REQUIREMENTS.md` to ensure compatibility.
+   Use the `/brainstorm` or `/write-plan` commands to define *how* a feature will be built. The agent must reference `specs/` to ensure compatibility.
 
 2. **Implement Feature**:
    The agent writes code in the `app/` directory following the approved plan. Small, atomic commits/edits are preferred to keep the context clean.

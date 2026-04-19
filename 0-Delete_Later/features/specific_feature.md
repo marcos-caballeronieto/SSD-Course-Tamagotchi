@@ -17,7 +17,7 @@
 - **Initial State:** [e.g., `hungerLevel` starts at 50]
 
 ## 4. UI/UX specifics
-*Visual elements specific to this feature (references `specs/ui_ux.md`).*
+*Visual elements specific to this feature.*
 - **Components Needed:** [e.g., Feed Button, Hunger Progress Bar]
 - **States:** [e.g., Disable the Feed button if Hunger is 0]
 

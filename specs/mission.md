@@ -1,36 +1,32 @@
-# Project Mission: [PROJECT_NAME]
+# Project Specification: Tiny Tamagotchi
 
-## 1. Executive Summary
-*Provide a 2-3 sentence overview of what this project is and its primary reason for existence.*
-> **Example:** "[PROJECT_NAME] is a [Type of App] designed to help [Target User] achieve [Main Benefit] by [Core Mechanism]."
+## 🎯 Project Overview
+Build a tiny virtual pet web app. The goal is to create a living system with clear logic, stats, and evolution.
 
-## 2. Problem Statement
-*Describe the pain point this project solves. Why does this need to exist?*
-- **Current Gap:** [Describe the current problem or missing solution].
-- **Our Solution:** [How this project bridges that gap].
+### Core Features
+To create a digital companion that feels alive, focus on these four pillars:
+- **Living Vitals:** Create meters for Hunger, Happiness, and Energy that automatically “tick” down over time to simulate a real-time need for care.
+- **The Care Loop:** Provide simple actions like Feed, Play, and Rest to replenish stats and keep the pet healthy.
+- **Dynamic States:** Use Normal, Sick, and Evolved states to give the player immediate visual feedback on their caretaking success.
+- **Personal Touches:** Add small “Easter eggs” or quirky reactions to give your pet a unique personality beyond just the numbers.
 
-## 3. Target Audience
-*Who are we building this for? This helps the agent tailor the UI/UX and tone.*
-- **Primary User:** [e.g., Data Scientists, Casual Gamers, Small Biz Owners].
-- **User Needs:** [e.g., Speed, Simplicity, High Security, Emotional Connection].
+## 📋 Project Scope
+To keep the focus on the workflow rather than over-engineering, please adhere to the following scope for the game requirements:
 
-## 4. Core Values & Principles (The "North Star")
-*These are the non-negotiables. If a technical decision contradicts these, the agent must flag it.*
-- **Principle 1:** [e.g., "Privacy First: No data leaves the local environment"].
-- **Principle 2:** [e.g., "Zero Friction: The user should reach the main goal in <3 clicks"].
-- **Principle 3:** [e.g., "AI-Native: Leverage agentic workflows for internal logic"].
+| Required | Not Allowed |
+| :--- | :--- |
+| **Pet:** Naming, 1 user, 1 evolution, 1 recovery path | Authentication and multiple users, multiple pets, inventories, or currencies |
+| **Stats (0–100):** Hunger, Happiness, Energy | Mini-games, social features, or notifications |
+| **Actions:** Feed, Play, Rest | Admin features or complex evolutions |
+| **States:** Normal, Sick, Evolved | Permanent death mechanics |
 
-## 5. Success Criteria (Definition of Done)
-*How do we know the mission is accomplished?*
-- [ ] Feature A is fully functional and verified by Playwright.
-- [ ] User can complete [Primary Task] without errors.
-- [ ] Performance: App loads in under [X]ms.
+### Technical Guidelines:
+- **State Persistence:** Make choices for state persistence (local storage, etc.).
+- **Architecture:** Decide between single-page application vs. multi-page application.
+- **Tech Stack:** Choose an appropriate framework and libraries.
 
-## 6. Out of Scope (Non-Goals)
-*Crucial to prevent "Scope Creep" from the agent.*
-- This project will **NOT** include: [e.g., Social login, Mobile version, Multi-language support].
-
-## 7. Tone & Personality
-*If the app speaks to the user, how does it sound?*
-- **Tone:** [e.g., Professional, Playful, Stoic, Minimalist].
-- **Visual Vibe:** [e.g., High-tech, Brutalist, Soft & Organic].
+## 📊 Quality Requirements
+- **Completeness:** Mission, audience, constraints, user flows, and success criteria must be defined. Edge cases must be addressed.
+- **Clarity and Specificity:** Decision points (algorithms, thresholds, lifecycles) must be explicitly stated.
+- **Internal Consistency:** Files must be internally consistent with each other and with the core protocols.
+- **Testability:** Validation strategies must test explicitly stated principles and features.
