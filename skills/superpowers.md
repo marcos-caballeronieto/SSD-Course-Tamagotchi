@@ -15,10 +15,10 @@ version: "2.1.0"
 
 ## Planning & Execution
 - **/brainstorm**: Analyze `specs/mission.md` or a feature in `specs/features/` and suggest 3 architectural approaches with explanations and pros/cons.
-- **/write-plan**: Create a step-by-step implementation plan in `specs/features/`. Format: `[dd-mm-yy_feature_name_plan.md]`. Update the main feature file to link/include this plan.
+- **/write-plan**: Create `feature_plan.md` and `validation.md` inside the feature's specific folder in `specs/features/`.
 - **/review-plan**: Review the implementation plan for logic gaps, security flaws, or tech-stack violations.
 - **/execute-plan**: Implement changes incrementally. After every logical block, verify against `specs/techstack.md`.
-- **/update-specs**: Sync `specs/mission.md` or specific features specs with the latest plans. Ensure previous plans are archived/referenced to maintain history.
+- **/update-specs**: Sync `mission.md` and the feature's `requirements.md` with any architectural changes discovered during implementation.
 
 ## Quality & Integrity
 - **/create-tests**: Delegate to the `playwright_testing` skill to generate relevant test suites for the active plan.

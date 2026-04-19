@@ -50,7 +50,7 @@ The framework is designed for the AI to read hierarchically. Never let the agent
 │   ├── agents.md             # The Constitution: Who the AI is and what rules it follows.
 │   ├── mission.md            # The Purpose: Why the project exists.
 │   ├── techstack.md          # The Tools: Allowed libraries and architecture.
-│   └── features/             # Granular specs (e.g., `core_logic.md`).
+│   └── features/             # Feature-specific folders (Requirements, Plan, Validation).
 ├── 🛠️ skills/                # Agent tools and commands (The "How").
 │   ├── superpowers.md        # Development workflow and custom commands (/brainstorm, /write-plan).
 │   ├── playwright_testing.md # QA protocol and mandatory validation.

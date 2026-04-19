@@ -15,11 +15,13 @@ You must strictly follow the command-based workflow defined in `skills/superpowe
 
 ### The Lifecycle of a Feature:
 1. **Brainstorm**: Use `/brainstorm` to explore ideas.
-2. **Plan**: Use `/write-plan` to create a `[dd-mm-yy_feature_name_plan.md]` file.
-3. **Review**: Invoke `/peer-review` (secondary agent) to audit the plan.
-4. **Execute**: Use `/execute-plan` to write code in `app/` incrementally.
-5. **Verify**: Run `/verify-implementation` (Playwright) to ensure code matches the spec.
-6. **Sync**: Use `/update-specs` to ensure documentation reflects the final state.
+2. **Setup Feature Folder**: Create `specs/features/[feature-name]/`.
+3. **Define Requirements**: Create `specs/features/[feature-name]/requirements.md`.
+4. **Plan**: Use `/write-plan` to create `specs/features/[feature-name]/feature_plan.md`.
+5. **Review**: Invoke `/peer-review` to audit the requirements and plan.
+6. **Execute**: Use `/execute-plan` to write code in `app/`.
+7. **Verify**: Use `/verify-implementation` (Playwright/Manual) as defined in `specs/features/[feature-name]/validation.md`.
+8. **Sync**: Update `ROADMAP.md` and ensure all feature docs are finalized.
 
 ---
 
@@ -46,10 +48,10 @@ When invoking secondary agents (via `/peer-review`, `/red-team`, or `/delegate-q
 ---
 
 ## 5. Documentation & File Standards
-- **File Names**: Use kebab-case for code and underscores for specs/plans as defined in the structure.
+- **File Names**: Use kebab-case for code. Feature specs use the folder structure: `specs/features/[feature-name]/{requirements,feature_plan,validation}.md`.
 - **Code Style**: Strictly follow the rules in `specs/techstack.md`.
 - **Commits**: Use the `skills/git_protocol.md` for every change.
-- **No Ghost Features**: Never implement a feature that is not described in `specs/features/`.
+- **No Ghost Features**: Never implement a feature that is not described in a `requirements.md` file within a feature folder.
 
 ---
 
