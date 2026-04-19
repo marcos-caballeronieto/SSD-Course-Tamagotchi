@@ -10,18 +10,18 @@ This plan implements a persistent, real-time vital signs engine using a Hybrid T
 - **Persistence**: Zustand middleware (`persist`) will sync the state to `localStorage` on every change.
 
 ## 2. Tasks
-- [ ] **Data Model**: Define `PetVitals` interface with strict number typing (0-100).
-- [ ] **Decay Constants**: Define `DECAY_RATES` (e.g., Hunger: 1 unit / 30s).
-- [ ] **Store Implementation**:
-    - [ ] Create `usePetStore` with `vitals` state.
-    - [ ] Implement `applyTotalDecay(seconds)` helper.
-    - [ ] Implement `tick()` action for the 1s decrement.
-- [ ] **UI Integration**:
-    - [ ] Create `VitalsMonitor` component (headless) that runs the `useEffect` heartbeat.
-    - [ ] Create `VitalsDashboard` component to render the progress bars.
-- [ ] **Edge Case Handling**:
-    - [ ] Ensure `Math.max(0, ...)` is used to prevent negative stats.
-    - [ ] Handle `lastUpdated` initialization for a brand new pet.
+- [x] **Data Model**: Define `PetVitals` interface with strict number typing (0-100).
+- [x] **Decay Constants**: Define `DECAY_RATES` (e.g., Hunger: 1 unit / 30s).
+- [x] **Store Implementation**:
+    - [x] Create `usePetStore` with `vitals` state.
+    - [x] Implement `applyTotalDecay(seconds)` helper (integrated into tick logic).
+    - [x] Implement `tick()` action for the 1s decrement.
+- [x] **UI Integration**:
+    - [x] Create `VitalsMonitor` component (headless) that runs the `useEffect` heartbeat.
+    - [x] Create `VitalsDashboard` component to render the progress bars.
+- [x] **Edge Case Handling**:
+    - [x] Ensure `Math.max(0, ...)` is used to prevent negative stats.
+    - [x] Handle `lastUpdated` initialization for a brand new pet.
 
 ## 3. Technical Constraints
 - No double-ticking: The initialization catch-up must happen exactly once before the heartbeat starts.
