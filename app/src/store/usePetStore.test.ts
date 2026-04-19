@@ -1,0 +1,75 @@
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { usePetStore } from './usePetStore';
+
+describe('usePetStore Vitals Decay', () => {
+  beforeEach(() => {
+    // Reset state before each test
+    usePetStore.setState({
+      vitals: { hunger: 100, happiness: 100, energy: 100 },
+      lastUpdated: Date.now(),
+    });
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('should initialize with 100 for all vitals', () => {
+    const state = usePetStore.getState();
+    expect(state.vitals.hunger).toBe(100);
+    expect(state.vitals.happiness).toBe(100);
+    expect(state.vitals.energy).toBe(100);
+  });
+
+  it('should calculate decay correctly over time difference', () => {
+    const initialTime = Date.now();
+    usePetStore.setState({ lastUpdated: initialTime });
+    
+    // Simulate advancing time by 60 seconds
+    vi.setSystemTime(initialTime + 60000);
+    
+    // Trigger tick
+    usePetStore.getState().tick();
+    
+    const state = usePetStore.getState();
+    // Hunger decays 1 every 30s -> 2 in 60s
+    expect(state.vitals.hunger).toBeCloseTo(98);
+    // Happiness decays 1 every 60s -> 1 in 60s
+    expect(state.vitals.happiness).toBeCloseTo(99);
+    // Energy decays 1 every 120s -> 0.5 in 60s
+    expect(state.vitals.energy).toBeCloseTo(99.5);
+  });
+
+  it('should enforce boundary condition (cannot drop below 0)', () => {
+    const initialTime = Date.now();
+    usePetStore.setState({ lastUpdated: initialTime });
+    
+    // Advance time by a huge amount (e.g., 200 hours)
+    vi.setSystemTime(initialTime + 200 * 3600 * 1000);
+    
+    // Trigger tick
+    usePetStore.getState().tick();
+    
+    const state = usePetStore.getState();
+    expect(state.vitals.hunger).toBe(0);
+    expect(state.vitals.happiness).toBe(0);
+    expect(state.vitals.energy).toBe(0);
+  });
+
+  it('actions should increase stats but not exceed 100', () => {
+    usePetStore.setState({
+      vitals: { hunger: 90, happiness: 90, energy: 90 },
+      lastUpdated: Date.now(),
+    });
+
+    usePetStore.getState().feed(); // +20 Hunger
+    usePetStore.getState().play(); // +20 Happiness
+    usePetStore.getState().rest(); // +40 Energy
+
+    const state = usePetStore.getState();
+    expect(state.vitals.hunger).toBe(100);
+    expect(state.vitals.happiness).toBe(100);
+    expect(state.vitals.energy).toBe(100);
+  });
+});

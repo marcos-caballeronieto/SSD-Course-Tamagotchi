@@ -8,10 +8,10 @@ This roadmap outlines the development phases for the Tiny Tamagotchi, focusing o
 - [ ] **Naming Interface**: Implement the initial layout for naming the pet.
 - [ ] **Base UI Shell**: Create the main container and responsive layout for the app.
 
-## Phase 2: Living Vitals & Ticking System ⚪
-- [ ] **Feature: Vitals Engine**: Implement the logic for Hunger, Happiness, and Energy (0-100).
-- [ ] **Background Decay**: Create the "Tick" system to automatically decrease stats over time.
-- [ ] **Visual Meters**: Build the UI components for displaying stat levels.
+## Phase 2: Living Vitals & Ticking System ✅
+- [x] **Feature: Vitals Engine**: Implement the logic for Hunger, Happiness, and Energy (0-100).
+- [x] **Background Decay**: Create the "Tick" system to automatically decrease stats over time.
+- [x] **Visual Meters**: Build the UI components for displaying stat levels.
 
 ## Phase 3: The Care Loop ⚪
 - [ ] **Feature: Feed**: Implement button and logic to restore Hunger.
