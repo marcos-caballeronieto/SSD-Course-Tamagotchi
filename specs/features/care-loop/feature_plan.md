@@ -13,8 +13,8 @@
   - **Rest**: The immediate Tamagotchi container gracefully transitions to a dark hue (`var(--surface-main)` to near black). Floating "Zzz" particles ascend. The lock holds for exactly 5 seconds.
 
 ## 2. Tasks
-- [ ] Update `usePetStore` to handle `activeInteraction` tracking and specific math for each action.
-- [ ] Add unit tests in `usePetStore.test.ts` for the Care Loop constraints.
-- [ ] Build the `ActionBar` UI component.
-- [ ] Create an `InteractionLayer.tsx` component (or handle it inside `App.tsx`) using `framer-motion` to render contextual animations over the pet sprite.
-- [ ] Integrate component states so screen "dims" precisely while `activeInteraction === 'sleeping'`.
+- [x] Update `usePetStore` to handle `activeInteraction` tracking and specific math for each action.
+- [x] Add unit tests in `usePetStore.test.ts` for the Care Loop constraints.
+- [x] Build the `ActionBar` UI component.
+- [x] Create an `InteractionLayer.tsx` component (or handle it inside `App.tsx`) using `framer-motion` to render contextual animations over the pet sprite.
+- [x] Integrate component states so screen "dims" precisely while `activeInteraction === 'sleeping'`.

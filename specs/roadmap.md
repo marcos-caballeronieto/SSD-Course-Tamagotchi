@@ -13,11 +13,11 @@ This roadmap outlines the development phases for the Tiny Tamagotchi, focusing o
 - [x] **Background Decay**: Create the "Tick" system to automatically decrease stats over time.
 - [x] **Visual Meters**: Build the UI components for displaying stat levels.
 
-## Phase 3: The Care Loop ⚪
-- [ ] **Feature: Feed**: Implement button and logic to restore Hunger.
-- [ ] **Feature: Play**: Implement button and logic to restore Happiness (at the cost of Energy).
-- [ ] **Feature: Rest**: Implement "Sleep" state and button to restore Energy.
-- [ ] **Action Feedback**: Add immediate visual changes during actions (Easter eggs/quirky reactions).
+## Phase 3: The Care Loop ✅
+- [x] **Feature: Feed**: Implement button and logic to restore Hunger.
+- [x] **Feature: Play**: Implement button and logic to restore Happiness (at the cost of Energy).
+- [x] **Feature: Rest**: Implement "Sleep" state and button to restore Energy.
+- [x] **Action Feedback**: Add immediate visual changes during actions (Easter eggs/quirky reactions).
 
 ## Phase 4: Dynamic States & Evolution ⚪
 - [ ] **Feature: Health States**: Implement the "Sick" state logic triggered by low vitals.

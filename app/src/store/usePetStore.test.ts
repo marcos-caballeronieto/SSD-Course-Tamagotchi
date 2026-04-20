@@ -61,20 +61,58 @@ describe('usePetStore Vitals Decay', () => {
     expect(state.vitals.energy).toBe(0);
   });
 
-  it('actions should increase stats but not exceed 100', () => {
+  it('play should increase happiness, decrease energy, and lock interaction for 1.5s', () => {
     usePetStore.setState({
-      vitals: { hunger: 90, happiness: 90, energy: 90 },
-      lastUpdated: Date.now(),
+      vitals: { hunger: 50, happiness: 50, energy: 50 },
+      activeInteraction: 'idle',
     });
 
-    usePetStore.getState().feed(); // +20 Hunger
-    usePetStore.getState().play(); // +20 Happiness
-    usePetStore.getState().rest(); // +40 Energy
+    usePetStore.getState().play();
+    
+    let state = usePetStore.getState();
+    expect(state.vitals.happiness).toBe(70);
+    expect(state.vitals.energy).toBe(40);
+    expect(state.activeInteraction).toBe('playing');
 
+    // Should not allow another action while playing
+    usePetStore.getState().feed();
+    state = usePetStore.getState();
+    expect(state.activeInteraction).toBe('playing'); // remain playing
+    expect(state.vitals.hunger).toBe(50); // feed didn't work
+
+    vi.advanceTimersByTime(1500);
+    expect(usePetStore.getState().activeInteraction).toBe('idle');
+  });
+
+  it('rest should lock interaction for 5s before restoring energy', () => {
+    usePetStore.setState({
+      vitals: { hunger: 50, happiness: 50, energy: 50 },
+      activeInteraction: 'idle',
+    });
+
+    usePetStore.getState().rest();
+    
+    let state = usePetStore.getState();
+    expect(state.activeInteraction).toBe('sleeping');
+    // Energy isn't restored until 5 seconds later
+    expect(state.vitals.energy).toBe(50);
+
+    vi.advanceTimersByTime(5000);
+    state = usePetStore.getState();
+    expect(state.vitals.energy).toBe(90);
+    expect(state.activeInteraction).toBe('idle');
+  });
+
+  it('play should be blocked if energy is strictly below 10', () => {
+    usePetStore.setState({
+      vitals: { hunger: 50, happiness: 50, energy: 9 },
+      activeInteraction: 'idle',
+    });
+
+    usePetStore.getState().play();
     const state = usePetStore.getState();
-    expect(state.vitals.hunger).toBe(100);
-    expect(state.vitals.happiness).toBe(100);
-    expect(state.vitals.energy).toBe(100);
+    expect(state.vitals.happiness).toBe(50);
+    expect(state.activeInteraction).toBe('idle');
   });
 });
 

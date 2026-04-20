@@ -12,11 +12,11 @@ export interface PetState {
   stage: 'Baby' | 'Adult';
   status: 'Normal' | 'Sick';
   createdAt: number | null;
+  activeInteraction: 'idle' | 'sleeping' | 'eating' | 'playing';
   vitals: PetVitals;
   lastUpdated: number;
   tick: () => void;
   setName: (name: string) => void;
-  // Actions to be implemented fully in Phase 3, added here as stubs or basic increments
   feed: () => void;
   play: () => void;
   rest: () => void;
@@ -36,6 +36,7 @@ export const usePetStore = create<PetState>()(
       stage: 'Baby',
       status: 'Normal',
       createdAt: null,
+      activeInteraction: 'idle',
       vitals: {
         hunger: 100,
         happiness: 100,
@@ -74,25 +75,64 @@ export const usePetStore = create<PetState>()(
       },
 
       feed: () => {
-        set((state) => ({
+        const state = get();
+        if (state.activeInteraction !== 'idle') return;
+        
+        set({
+          activeInteraction: 'eating',
           vitals: { ...state.vitals, hunger: Math.min(100, state.vitals.hunger + 20) },
-        }));
+        });
+
+        setTimeout(() => {
+          if (get().activeInteraction === 'eating') set({ activeInteraction: 'idle' });
+        }, 1500); // 1.5s lock for the eating animation
       },
 
       play: () => {
-        set((state) => ({
-          vitals: { ...state.vitals, happiness: Math.min(100, state.vitals.happiness + 20) },
-        }));
+        const state = get();
+        if (state.activeInteraction !== 'idle' || state.vitals.energy < 10) return;
+        
+        set({
+          activeInteraction: 'playing',
+          vitals: {
+            ...state.vitals,
+            happiness: Math.min(100, state.vitals.happiness + 20),
+            energy: Math.max(0, state.vitals.energy - 10),
+          },
+        });
+
+        setTimeout(() => {
+          if (get().activeInteraction === 'playing') set({ activeInteraction: 'idle' });
+        }, 1500); // 1.5s lock for play animation
       },
 
       rest: () => {
-        set((state) => ({
-          vitals: { ...state.vitals, energy: Math.min(100, state.vitals.energy + 40) },
-        }));
+        const state = get();
+        if (state.activeInteraction !== 'idle') return;
+        
+        set({ activeInteraction: 'sleeping' });
+
+        setTimeout(() => {
+          const current = get();
+          if (current.activeInteraction === 'sleeping') {
+            set({
+              activeInteraction: 'idle',
+              vitals: { ...current.vitals, energy: Math.min(100, current.vitals.energy + 40) },
+            });
+          }
+        }, 5000); // 5s sleep lock
       },
     }),
     {
       name: 'tiny-tamagotchi-storage',
+      partialize: (state) => ({
+        name: state.name,
+        stage: state.stage,
+        status: state.status,
+        createdAt: state.createdAt,
+        vitals: state.vitals,
+        lastUpdated: state.lastUpdated,
+      }),
     }
   )
 );

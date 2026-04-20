@@ -1,0 +1,66 @@
+.actionBar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  padding: 0;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--surface-main);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.actionBtn:hover:not(:disabled) .iconBox {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  transform: translateY(-2px);
+  background-color: rgba(46, 204, 113, 0.05);
+}
+
+.actionBtn:active:not(:disabled) .iconBox {
+  transform: translateY(0) scale(0.95);
+}
+
+.actionBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Play button specific hovering */
+.playBtn:hover:not(:disabled) .iconBox {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+  background-color: rgba(243, 156, 18, 0.05); /* matching hsl(38, 92%, 50%) roughly */
+}
+
+/* Rest button specific hovering */
+.restBtn:hover:not(:disabled) .iconBox {
+  border-color: hsl(210, 80%, 60%);
+  color: hsl(210, 80%, 60%);
+  background-color: hsla(210, 80%, 60%, 0.05);
+}
