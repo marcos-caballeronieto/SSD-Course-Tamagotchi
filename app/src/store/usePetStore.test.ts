@@ -210,4 +210,32 @@ describe('usePetStore Onboarding & Identity', () => {
     expect(state.name).toBe('Chonker');
     expect(state.createdAt).toBeTypeOf('number');
   });
+
+  it('resetGame should restore the store exactly to initial defaults', () => {
+    // Dirty the state completely
+    usePetStore.setState({
+      name: 'OldName',
+      stage: 'Adult',
+      status: 'Sick',
+      growth: 100,
+      sickTimer: 400,
+      vitals: { hunger: 5, happiness: 10, energy: 0 },
+      activeInteraction: 'eating',
+      createdAt: 12345
+    });
+
+    usePetStore.getState().resetGame();
+    
+    const state = usePetStore.getState();
+    expect(state.name).toBeNull();
+    expect(state.stage).toBe('Baby');
+    expect(state.status).toBe('Normal');
+    expect(state.growth).toBe(0);
+    expect(state.sickTimer).toBe(0);
+    expect(state.activeInteraction).toBe('idle');
+    expect(state.vitals.hunger).toBe(100);
+    expect(state.vitals.happiness).toBe(100);
+    expect(state.vitals.energy).toBe(100);
+    expect(state.createdAt).toBeNull();
+  });
 });

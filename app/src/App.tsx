@@ -3,6 +3,7 @@ import { VitalsMonitor } from './components/VitalsMonitor';
 import { VitalsDashboard } from './components/VitalsDashboard';
 import { NamingScreen } from './components/NamingScreen';
 import { ActionBar } from './components/ActionBar';
+import { RefreshCcw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
   const status = usePetStore((state) => state.status);
   const growth = usePetStore((state) => state.growth);
   const activeInteraction = usePetStore((state) => state.activeInteraction);
+  const resetGame = usePetStore((state) => state.resetGame);
   const isSleeping = activeInteraction === 'sleeping';
   const isSick = status === 'Sick';
 
@@ -22,6 +24,12 @@ function App() {
       </div>
     );
   }
+
+  const handleReset = () => {
+    if (window.confirm("Are you sure you want to adopt a new pet? This will erase your current pet completely.")) {
+      resetGame();
+    }
+  };
 
   // Determine Sprite
   const sprite = isSick 
@@ -42,6 +50,9 @@ function App() {
       <VitalsMonitor />
       
       <header className="header">
+        <button className="resetBtn" onClick={handleReset} title="Adopt a new pet">
+          <RefreshCcw size={20} />
+        </button>
         <h1 className="title">{name}</h1>
         <div className="statusBadges">
           <span className="badge">{stage}</span>

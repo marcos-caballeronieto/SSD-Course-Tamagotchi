@@ -21,6 +21,7 @@ export interface PetState {
   play: () => void;
   rest: () => void;
   heal: () => void;
+  resetGame: () => void;
   growth: number;
   sickTimer: number;
 }
@@ -186,6 +187,20 @@ export const usePetStore = create<PetState>()(
             });
           }
         }, 3000); // 3s heal lock
+      },
+
+      resetGame: () => {
+        set({
+           name: null,
+           stage: 'Baby',
+           status: 'Normal',
+           createdAt: null,
+           activeInteraction: 'idle',
+           growth: 0,
+           sickTimer: 0,
+           vitals: { hunger: 100, happiness: 100, energy: 100 },
+           lastUpdated: Date.now()
+        });
       },
     }),
     {
