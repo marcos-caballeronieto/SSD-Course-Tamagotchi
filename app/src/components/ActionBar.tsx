@@ -1,5 +1,5 @@
 import { usePetStore } from '../store/usePetStore';
-import { Drumstick, Gamepad2, Moon } from 'lucide-react';
+import { Drumstick, Gamepad2, Moon, Pill } from 'lucide-react';
 import styles from './ActionBar.module.css';
 
 export function ActionBar() {
@@ -7,12 +7,31 @@ export function ActionBar() {
     feed, 
     play, 
     rest, 
+    heal,
     activeInteraction,
-    vitals
+    vitals,
+    status
   } = usePetStore();
 
   const isLocked = activeInteraction !== 'idle';
   const cantPlay = vitals.energy < 10;
+  const isSick = status === 'Sick';
+
+  // If the pet is sick, ONLY the heal button is available to focus on recovery
+  if (isSick) {
+    return (
+      <div className={styles.actionBar}>
+        <button 
+          className={`${styles.actionBtn} ${styles.healBtn}`} 
+          disabled={isLocked} 
+          onClick={heal}
+        >
+          <div className={styles.iconBox}><Pill size={20} /></div>
+          <span>Heal</span>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.actionBar}>

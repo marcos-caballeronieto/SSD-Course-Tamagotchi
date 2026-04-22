@@ -15,12 +15,12 @@
   - Add the "Evolution Sequence" component/animation.
 
 ## 2. Tasks
-- [ ] Add `growth` and sickness tracking logic to `usePetStore.ts`.
-- [ ] Implement `heal()` action in store.
-- [ ] Update `tick()` logic to handle sickness triggers and intensified decay.
-- [ ] Create a `TransformOverlay` component for the final evolution animation.
-- [ ] Update pet sprite styling to handle `growth` scaling and sickness filters.
-- [ ] Add "Heal" button to `ActionBar` with conditional visibility.
+- [x] Add `growth` and sickness tracking logic to `usePetStore.ts`.
+- [x] Implement `heal()` action in store.
+- [x] Update `tick()` logic to handle sickness triggers and intensified decay.
+- [x] Create a `TransformOverlay` component for the final evolution animation.
+- [x] Update pet sprite styling to handle `growth` scaling and sickness filters.
+- [x] Add "Heal" button to `ActionBar` with conditional visibility.
 
 ## 3. Dependencies
 - Framer Motion for the transformation sequence.

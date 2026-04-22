@@ -64,3 +64,10 @@
   color: hsl(210, 80%, 60%);
   background-color: hsla(210, 80%, 60%, 0.05);
 }
+
+/* Heal button specific hovering */
+.healBtn:hover:not(:disabled) .iconBox {
+  border-color: hsl(350, 80%, 60%);
+  color: hsl(350, 80%, 60%);
+  background-color: hsla(350, 80%, 60%, 0.05);
+}

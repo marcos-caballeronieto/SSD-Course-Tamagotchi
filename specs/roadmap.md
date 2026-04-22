@@ -19,11 +19,11 @@ This roadmap outlines the development phases for the Tiny Tamagotchi, focusing o
 - [x] **Feature: Rest**: Implement "Sleep" state and button to restore Energy.
 - [x] **Action Feedback**: Add immediate visual changes during actions (Easter eggs/quirky reactions).
 
-## Phase 4: Dynamic States & Evolution ⚪
-- [ ] **Feature: Health States**: Implement the "Sick" state logic triggered by low vitals.
-- [ ] **Feature: Recovery Path**: Implement the mechanism to restore health from the "Sick" state.
-- [ ] **Feature: Evolution**: Implement the "Baby" to "Adult" transformation based on survival time.
-- [ ] **Dynamic Sprites**: Integrate visual changes for Normal, Sick, and Evolved states.
+## Phase 4: Dynamic States & Evolution ✅
+- [x] **Feature: Health States**: Implement the "Sick" state logic triggered by low vitals.
+- [x] **Feature: Recovery Path**: Implement the mechanism to restore health from the "Sick" state.
+- [x] **Feature: Evolution**: Implement the "Baby" to "Adult" transformation based on survival time.
+- [x] **Dynamic Sprites**: Integrate visual changes for Normal, Sick, and Evolved states.
 
 ## Phase 5: Persistence & Final Polish ⚪
 - [ ] **State Persistence**: Implement LocalStorage syncing to save the pet's state between sessions.

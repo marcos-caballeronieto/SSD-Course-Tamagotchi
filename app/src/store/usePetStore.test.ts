@@ -116,6 +116,74 @@ describe('usePetStore Vitals Decay', () => {
   });
 });
 
+describe('usePetStore Evolution & States', () => {
+  beforeEach(() => {
+    usePetStore.setState({
+      name: 'TestPet',
+      stage: 'Baby',
+      status: 'Normal',
+      growth: 0,
+      sickTimer: 0,
+      vitals: { hunger: 100, happiness: 100, energy: 100 },
+      lastUpdated: Date.now(),
+      activeInteraction: 'idle'
+    });
+    vi.useFakeTimers();
+  });
+
+  it('triggers sickness after 2 minutes of low vitals and accelerates decay', () => {
+    usePetStore.setState({ vitals: { hunger: 0, happiness: 100, energy: 100 } });
+    
+    // Pass 120 seconds
+    vi.advanceTimersByTime(120000);
+    usePetStore.getState().tick();
+    
+    let state = usePetStore.getState();
+    expect(state.status).toBe('Sick');
+    
+    // Test accelerated decay (Normal decay is 1 unit / 30s. Sick is 1.5 units / 30s)
+    usePetStore.setState({ vitals: { hunger: 50, happiness: 100, energy: 100 }, lastUpdated: Date.now() });
+    vi.advanceTimersByTime(30000);
+    usePetStore.getState().tick();
+    
+    expect(usePetStore.getState().vitals.hunger).toBe(48.5);
+  });
+
+  it('heal action restores normal status, gives 50 vitals baseline, and locks interaction', () => {
+    usePetStore.setState({ status: 'Sick', sickTimer: 150, vitals: { hunger: 5, happiness: 50, energy: 5 } });
+    
+    usePetStore.getState().heal();
+    
+    expect(usePetStore.getState().activeInteraction).toBe('healing');
+    
+    vi.advanceTimersByTime(3000);
+    
+    const state = usePetStore.getState();
+    expect(state.status).toBe('Normal');
+    expect(state.sickTimer).toBe(0);
+    expect(state.activeInteraction).toBe('idle');
+    expect(state.vitals.hunger).toBe(50);
+    expect(state.vitals.energy).toBe(50);
+  });
+
+  it('growth steadily increases and triggers Adult evolution at 100', () => {
+    usePetStore.setState({ growth: 95, lastUpdated: Date.now() });
+    
+    // To gain 5 growth, we need 5 / (100/600) seconds = 30 seconds
+    vi.advanceTimersByTime(30000);
+    usePetStore.getState().tick();
+    
+    const state = usePetStore.getState();
+    expect(state.growth).toBe(100);
+    expect(state.stage).toBe('Adult');
+    expect(state.activeInteraction).toBe('evolving');
+
+    // Evolution lock clears after 4s
+    vi.advanceTimersByTime(4000);
+    expect(usePetStore.getState().activeInteraction).toBe('idle');
+  });
+});
+
 describe('usePetStore Onboarding & Identity', () => {
   it('should initialize with null name and newborn defaults', () => {
     // Force reset to absolute initial state

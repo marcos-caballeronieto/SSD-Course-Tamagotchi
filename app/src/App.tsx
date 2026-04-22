@@ -10,8 +10,10 @@ function App() {
   const name = usePetStore((state) => state.name);
   const stage = usePetStore((state) => state.stage);
   const status = usePetStore((state) => state.status);
+  const growth = usePetStore((state) => state.growth);
   const activeInteraction = usePetStore((state) => state.activeInteraction);
   const isSleeping = activeInteraction === 'sleeping';
+  const isSick = status === 'Sick';
 
   if (!name) {
     return (
@@ -21,6 +23,20 @@ function App() {
     );
   }
 
+  // Determine Sprite
+  const sprite = isSick 
+    ? (stage === 'Baby' ? '🤢' : '🤒')
+    : (stage === 'Baby' ? '🥚' : '🐥');
+
+  // Determine Scale based on Growth logic
+  let spriteScale = 1;
+  if (stage === 'Adult') spriteScale = 1.5;
+  else if (growth >= 67) spriteScale = 1.5;
+  else if (growth >= 34) spriteScale = 1.2;
+
+  // Compile theme classes
+  const themeClasses = `petArea ${isSleeping ? 'sleepingTheme' : ''} ${isSick ? 'sickTheme' : ''}`;
+
   return (
     <div className="appContainer">
       <VitalsMonitor />
@@ -29,13 +45,13 @@ function App() {
         <h1 className="title">{name}</h1>
         <div className="statusBadges">
           <span className="badge">{stage}</span>
-          <span className={`badge ${status === 'Sick' ? 'badgeDanger' : 'badgeSuccess'}`}>
+          <span className={`badge ${isSick ? 'badgeDanger' : 'badgeSuccess'}`}>
             {status}
           </span>
         </div>
       </header>
 
-      <div className={`petArea ${isSleeping ? 'sleepingTheme' : ''}`}>
+      <div className={themeClasses}>
         <AnimatePresence>
           {activeInteraction === 'eating' && (
             <motion.div 
@@ -73,24 +89,61 @@ function App() {
               Zzz
             </motion.div>
           )}
+
+          {activeInteraction === 'healing' && (
+            <motion.div 
+              key="heal"
+              className="particle healParticle"
+              initial={{ y: 20, opacity: 0, scale: 0.5 }}
+              animate={{ y: -50, opacity: [0, 1, 0], scale: 2 }}
+              transition={{ duration: 1.5, repeat: 1, ease: "easeOut" }}
+            >
+              ➕
+            </motion.div>
+          )}
+
+          {activeInteraction === 'evolving' && (
+            <motion.div 
+              key="evolve"
+              className="evolveOverlay"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 0], scale: [0, 5, 10] }}
+              transition={{ duration: 3, ease: "easeOut" }}
+            />
+          )}
+
+          {/* Random sick particles if sick */}
+          {isSick && (
+            <motion.div 
+              key="sickClouds"
+              className="particle sickParticle"
+              initial={{ y: -10, x: -30, opacity: 0 }}
+              animate={{ y: -40, x: -40, opacity: [0, 0.5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              💨
+            </motion.div>
+          )}
         </AnimatePresence>
 
         <motion.div 
           className="petSprite"
           animate={
             activeInteraction === 'playing' 
-              ? { y: [0, -30, 0, -30, 0], rotate: [0, 10, -10, 10, 0] } 
+              ? { y: [0, -30, 0, -30, 0], rotate: [0, 10, -10, 10, 0], scale: spriteScale } 
               : activeInteraction === 'sleeping'
-              ? { scale: [1, 1.05, 1] }
-              : { y: [0, -10, 0] } 
+              ? { scale: [spriteScale, spriteScale * 1.05, spriteScale] }
+              : activeInteraction === 'evolving'
+              ? { rotate: [0, 360, 720, 1080], scale: [spriteScale, 2, spriteScale] }
+              : { y: [0, -10, 0], scale: spriteScale } 
           }
           transition={{ 
-            duration: activeInteraction === 'playing' ? 1.5 : activeInteraction === 'sleeping' ? 4 : 2, 
-            repeat: activeInteraction === 'playing' ? 0 : Infinity,
+            duration: activeInteraction === 'playing' ? 1.5 : activeInteraction === 'sleeping' ? 4 : activeInteraction === 'evolving' ? 4 : 2, 
+            repeat: activeInteraction === 'playing' || activeInteraction === 'evolving' ? 0 : Infinity,
             ease: "easeInOut"
           }}
         >
-          {stage === 'Baby' ? '🥚' : '🐥'}
+          {sprite}
         </motion.div>
       </div>
 
