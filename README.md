@@ -1,47 +1,56 @@
-# ⚙️ Spec-Driven Development (SDD) Agentic Framework
+# 🥚 Tiny Tamagotchi - SDD Agentic Framework Showcase
 
-[![AI-Native](https://img.shields.io/badge/Architecture-AI_Native-blue.svg)](https://github.com/tu-usuario/sdd-framework)
+[![AI-Native](https://img.shields.io/badge/Architecture-AI_Native-blue.svg)](https://github.com/marcos-caballeronieto/SSD-Course-Tamagotchi)
 [![Workflow](https://img.shields.io/badge/Workflow-Spec_Driven-success.svg)](#)
 [![Ready for](https://img.shields.io/badge/IDE-Google_Antigravity_%7C_Claude_Code-black.svg)](#)
 
-> **"Vibe Coding" is dead.** Writing random prompts and hoping the AI generates a scalable system no longer works. This repository is a **Meta-Framework** designed to orchestrate autonomous coding agents, eliminating hallucinations and context decay through rigorous specification.
+> **"Vibe Coding" is dead.** Writing random prompts and hoping the AI generates a scalable system no longer works. This project was built entirely using the **Spec-Driven Development (SDD)** methodology, orchestrating autonomous coding agents to build a complete, interactive web application without context decay.
 
 ---
 
-## 🧠 What is this?
+## 🐣 What is this?
 
-This repository is not a code template (React, Python, etc.). It is an **Operating System for AI Agents**. It provides the documentary structure, constraints, and skills (Skills) necessary for any model (Claude 3.7, Gemini 2.0) to build complex software in a deterministic and auditable way.
+**Tiny Tamagotchi** is a fully functional virtual pet application built with React, Vite, TypeScript, Zustand, and Framer Motion. 
 
-**It solves the 3 main problems of AI-driven development:**
-1. **Context Loss:** Resolved through the strict separation of `Mission`, `TechStack`, and `Roadmap`.
-2. **Spaghetti Code:** Resolved through the "Planning before Execution" protocol (`/write-plan`).
-3. **Lack of Verification:** Resolved through the mandatory use of automated testing MCPs (Playwright).
-4. **Documentation Lag:** Resolved through the integration of **Context7 MCP** for real-time API documentation.
+More importantly, this repository serves as a **production-ready demonstration of the SDD Framework**. It illustrates how an AI agent (like Claude 3.7 or Gemini 2.0) can build robust software in a deterministic and auditable way by strictly following documentation, constraints, and skills.
+
+**Key features of the Pet:**
+- **Lifecycle Management:** Egg -> Baby -> Teen -> Adult -> Senior -> Ghost.
+- **Needs System:** Hunger, Happiness, Health, Energy, and Hygiene tracking.
+- **Interactions:** Feed, Play, Heal, Clean, and Sleep interactions with cooldowns.
+- **Sickness System:** Pet gets sick if vitals remain low, requires healing.
+- **Animations:** Dynamic UI feedback utilizing Framer Motion.
 
 ---
 
-## 🚀 How to Use
+## 🚀 How to Run the App
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/tu-usuario/sdd-framework.git
-   cd sdd-framework
+   git clone https://github.com/marcos-caballeronieto/SSD-Course-Tamagotchi.git
+   cd Tamagotchi
    ```
 
-2. **Setup your environment:**
-   Ensure you are using an AI-native editor like **Google Antigravity** or **Claude Code**.
+2. **Navigate to the app directory:**
+   ```bash
+   cd app
+   ```
 
-3. **Initialize the Agent:**
-   Feed the `specs/agents.md` file to your AI agent. This acts as its "System Prompt" and operational manual.
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-4. **Follow the Workflow:**
-   Always use the `/write-plan` command (defined in `skills/superpowers.md`) before any implementation to ensure alignment with the specifications.
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-## 📂 System Architecture (The Backbone)
+## 🧠 The SDD Architecture (Behind the Scenes)
 
-The framework is designed for the AI to read hierarchically. Never let the agent write code without having read its "Constitution" first.
+This project isn't just about the code; it's about *how* it was built. The framework is designed for the AI to read hierarchically.
 
 ```text
 ├── 📜 README.md              # This document.
@@ -54,43 +63,17 @@ The framework is designed for the AI to read hierarchically. Never let the agent
 ├── 🛠️ skills/                # Agent tools and commands (The "How").
 │   ├── superpowers.md        # Development workflow and custom commands (/brainstorm, /write-plan).
 │   ├── playwright_testing.md # QA protocol and mandatory validation.
-│   ├── context7_docs.md      # Real-time documentation fetcher.
-│   └── [Other Skills]        # MCP integrations (Rube, Document Suite, etc.).
-└── 💻 app/                   # Production code (100% generated and managed by the AI).
+│   └── context7_docs.md      # Real-time documentation fetcher.
+└── 💻 app/                   # Production code (The Tamagotchi React App).
 ```
 
 ---
 
-## 🔄 The Development Loop (SSD Cycle)
+## 🔄 The Development Loop (SDD Cycle) Used
 
-The framework enforces a rigorous iterative process to prevent technical debt and context drift:
+The app was developed using this rigorous iterative process to prevent technical debt:
 
-1. **Plan & Brainstorm**:
-   Use the `/brainstorm` or `/write-plan` commands to define *how* a feature will be built. The agent must reference `specs/` to ensure compatibility.
-
-2. **Implement Feature**:
-   The agent writes code in the `app/` directory following the approved plan. Small, atomic commits/edits are preferred to keep the context clean.
-
-3. **Update Specs & Roadmap**:
-   If the implementation changes the system's behavior or uncovers new edge cases, update the corresponding file in `specs/`. Mark the task as completed in `ROADMAP.md`.
-
-4. **Re-plan & Iterate**:
-   Never start a new feature without updating the state of the project first. The loop begins again by reading the updated `ROADMAP.md` and creating the next plan.
-
----
-
-## 🏚️ Legacy Projects Integration
-
-Applying SSD to an existing codebase requires a "Reverse-Engineering" phase:
-
-1. **Document the Baseline**: 
-   Before making changes, the agent must read the current codebase and fill out `specs/techstack.md` and `specs/mission.md` to establish the current "Source of Truth".
-
-2. **Map the Application Folder**: 
-   If your project doesn't use an `app/` directory (e.g., it uses `src/` or `components/`), update the pointer in the system architecture to reflect your actual structure.
-
-3. **Incremental Migration**: 
-   Do not attempt to spec the entire legacy app at once. Only create `specs/features/` for the specific modules you are currently refactoring or expanding.
-
-4. **Baseline Testing**: 
-   Before any `/execute-plan`, create a Playwright test that covers the *existing* behavior. This ensures that the SSD loop doesn't introduce regressions in legacy logic.
+1. **Plan & Brainstorm**: Creating `feature_plan.md` using the agents.
+2. **Implement Feature**: The agent wrote code in the `app/` directory following the approved plan.
+3. **Update Specs & Roadmap**: Specs were updated as the design evolved, mitigating context drift.
+4. **Re-plan & Iterate**: New phases were executed predictably based on `ROADMAP.md`.
