@@ -22,6 +22,11 @@ export interface PetState {
   rest: () => void;
   heal: () => void;
   resetGame: () => void;
+  // Dev Actions
+  setStat: (stat: keyof PetVitals, value: number) => void;
+  setStage: (stage: 'Baby' | 'Adult') => void;
+  setStatus: (status: 'Normal' | 'Sick') => void;
+  fastForward: (seconds: number) => void;
   growth: number;
   sickTimer: number;
 }
@@ -201,6 +206,25 @@ export const usePetStore = create<PetState>()(
            vitals: { hunger: 100, happiness: 100, energy: 100 },
            lastUpdated: Date.now()
         });
+      },
+
+      setStat: (stat, value) => {
+        set((state) => ({
+          vitals: { ...state.vitals, [stat]: Math.max(0, Math.min(100, value)) }
+        }));
+      },
+
+      setStage: (stage) => set({ stage }),
+
+      setStatus: (status) => set({ status }),
+
+      fastForward: (seconds) => {
+        // We simulate elapsed time by effectively shifting lastUpdated further into the past 
+        // by `seconds`, so the next `tick()` handles the exact delta.
+        set((state) => ({
+          lastUpdated: state.lastUpdated - seconds * 1000
+        }));
+        get().tick(); // Trigger immediate tick
       },
     }),
     {

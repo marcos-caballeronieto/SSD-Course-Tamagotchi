@@ -3,6 +3,7 @@ import { VitalsMonitor } from './components/VitalsMonitor';
 import { VitalsDashboard } from './components/VitalsDashboard';
 import { NamingScreen } from './components/NamingScreen';
 import { ActionBar } from './components/ActionBar';
+import { DevMenu } from './components/DevMenu/DevMenu';
 import { RefreshCcw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
@@ -160,6 +161,7 @@ function App() {
 
       <VitalsDashboard />
       <ActionBar />
+      <DevMenu />
     </div>
   );
 }

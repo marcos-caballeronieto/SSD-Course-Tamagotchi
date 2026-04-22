@@ -29,6 +29,6 @@ This roadmap outlines the development phases for the Tiny Tamagotchi, focusing o
 - [x] **State Persistence**: Implement LocalStorage syncing to save the pet's state between sessions.
 - [x] **UX Refinement**: Polish transitions, animations, and responsive behavior.
 ## Phase 6: QA Tools & Demo Mode 🔄
-- [ ] **Feature: Dev Menu**: Implement a toggleable debug panel to manipulate pet stats.
-- [ ] **State Control**: Add sliders or buttons for rapid Hunger, Happiness, Health, and Age adjustment.
-- [ ] **Visual Validation**: Ensure UI and evolution states update immediately upon manual stat changes.
+- [x] **Feature: Dev Menu**: Implement a toggleable debug panel to manipulate pet stats.
+- [x] **State Control**: Add sliders or buttons for rapid Hunger, Happiness, Health, and Age adjustment.
+- [x] **Visual Validation**: Ensure UI and evolution states update immediately upon manual stat changes.
